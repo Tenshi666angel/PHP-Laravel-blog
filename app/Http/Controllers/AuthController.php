@@ -34,7 +34,7 @@ class AuthController extends Controller
 
     public function showLoginForm(Request $request)
     {
-        $msg = $request->query->get('invcred') ? 'invalid credentials' : '';
+        $msg = session('invcred');
 
         return view('/login', ['msg' => $msg]);
     }
