@@ -19,12 +19,22 @@
     background: transparent;
     border: 1px solid teal;
   }
+
+  .logform input.is-invalid {
+    border-color: red !important;
+  }
 </style>
 
 <form method="POST" action={{ route('dologin') }} class="logform">
   @csrf
-  <input type="text" name="email" placeholder="email" />
-  <input type="password" name="password" placeholder="password" />
+  <input class="@error('email') is-invalid @enderror" type="text" name="email" placeholder="email" />
+  @error('email')
+  {{ $message }}
+  @enderror
+  <input class="@error('password') is-invalid @enderror" type="password" name="password" placeholder="password" />
+  @error('password')
+  {{ $message }}
+  @enderror
   <button type="submit" class="logbtn">Enter</button>
   {{ $msg }}
 </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RoleType;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,7 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         $user = $this->authService->register(
             $request->input('email'),
@@ -39,7 +41,7 @@ class AuthController extends Controller
         return view('/login', ['msg' => $msg]);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $user = $this->authService->login(
             $request->input('email'),

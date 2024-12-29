@@ -25,8 +25,26 @@
 <form method="POST" action={{ route('register') }} class="regform">
   @csrf
   <input type="text" name="email" placeholder="email" />
+  @error('email')
+  {{ $message }}
+  @enderror
   <input type="text" name="name" placeholder="name" />
+  @error('name')
+  {{ $message }}
+  @enderror
   <input type="password" name="password" placeholder="password" />
+  @error('password')
+  {{ $message }}
+  @enderror
+
+  <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  @error('g-recaptha-response')
+  {{ $message }}
+  @enderror
+
   <button type="submit" class="regbtn">Enter</button>
 </form>
+
 
